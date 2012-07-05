@@ -9,7 +9,7 @@
 
 (define (square x) (expt x 2))
 
-(let* ((lst (numbers-until 10))
+(let* ((lst (numbers-until 100))
        (sum-of-squares (apply + (map square lst)))
        (square-of-sum (square (apply + lst)))
        (difference (- square-of-sum sum-of-squares)))
