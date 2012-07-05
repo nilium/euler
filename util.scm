@@ -48,3 +48,14 @@
                         distinct-lst
                         (append distinct-lst (list head)))
                     (cdr sub)))))))
+
+;; Return the last item in a list.
+;; e.g., (last '(1 2 3 4))    =>    4
+(define (last lst)
+  (if (not (null? lst))
+    (let loop ((head (car lst))
+               (sub (cdr lst)))
+        (if (null? sub)
+            head
+            (loop (car sub)
+                  (cdr sub))))))
