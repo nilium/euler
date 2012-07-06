@@ -5,7 +5,7 @@
 
 ;; determine if fac is a factor of the input number
 (define (factor? fac num)
-  (and (integer? fac) (integer? num) (integer? (/ num fac))))
+  (= 0 (modulo num fac)))
 
 ;; get the factors of a number
 (define (factors-of num)
