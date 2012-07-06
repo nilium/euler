@@ -17,7 +17,7 @@
       ((= factored 0) '(0))
 
       ; case 2: n > factored/2
-      ((> n (/ factored 2))
+      ((> n (sqrt factored))
        (if (< 1 factored)
            (append results (list factored))
            results))
