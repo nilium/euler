@@ -1,7 +1,7 @@
 ;; a + b + c = 1000
 ;; iterate through a
 ;; iterate through b
-;; c = 1000 - a + b
+;; c = 1000 - (a + b)
 
 (define (is-pythagorean? a b c)
   (= (+ (expt a 2) (expt b 2)) (expt c 2)))
