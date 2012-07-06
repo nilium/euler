@@ -22,19 +22,19 @@
            (append results (list factored))
            results))
 
-        ; case 3: n is a factor
-        ((factor? n factored)
-         (loop n
-               (append results (list n))
-               (floor (/ factored n))))
+      ; case 3: n is a factor
+      ((factor? n factored)
+       (loop n
+             (append results (list n))
+             (floor (/ factored n))))
 
-        ; case 4: n is not a factor
-        (else
-         (loop (if (even? n)
-                   (+ n 1)
-                   (+ n 2))
-               results
-               factored)))))
+      ; case 4: n is not a factor
+      (else
+       (loop (if (even? n)
+                 (+ n 1)
+                 (+ n 2))
+             results
+             factored)))))
 
 (begin
   (display (last (factors-of target)))
