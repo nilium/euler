@@ -1,9 +1,5 @@
 (define target 10001)
 
-;; determine if fac is a factor of the input number
-(define (factor? fac num)
-  (< 0 (modulo num fac)))
-
 ;; returns true if any of the factors in facs are a factor of num
 (define (factors? facs num)
   (if (not (null? facs))
