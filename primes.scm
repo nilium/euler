@@ -1,4 +1,5 @@
-(define target 10001)
+;; target is two million
+(define target 2000000)
 
 ;; returns true if any of the factors in facs are a factor of num
 (define factors?
@@ -10,20 +11,20 @@
     (else (loop (cdr facs-iter)))))))
 
 (begin
-  (display (car
-   (let loop ((prime-count 1)
-              (primes '(2))
-              (n 3))
-     (if (< prime-count target)
-       (let ((is-prime (not (factors? primes n))))
-       (begin
-         ;(if is-prime (pp (list (+ 1 prime-count) n)))
-         (if is-prime
-             (loop (+ prime-count 1)
-                   (cons n primes)
-                   (+ n 2))
-             (loop prime-count
-                   primes
-                   (+ n 2)))))
-         primes))))
+  (display
+    (let loop ((primes '(2))
+               (n 3)
+               (sum 2))
+      (if (< n target)
+        (let ((is-prime (not (factors? primes n))))
+        ; (begin
+          ; (if is-prime (pp n))
+          (if is-prime
+              (loop (cons n primes)
+                    (+ n 2)
+                    (+ sum n))
+              (loop primes
+                    (+ n 2)
+                    sum)))
+          sum)))
   (newline))
