@@ -59,3 +59,18 @@
             head
             (loop (car sub)
                   (cdr sub))))))
+
+;; Takes a list and combines all elements, resulting in a single value.
+;; fn => (lambda (initval obj) ...) -> combination of initval and obj
+;; lst => (list ...)
+;; initval is an arbitrary value passed to the lambda. If none is given
+;; then initval is the first value in the list
+(define reduce
+  (lambda (fn lst . initval)
+    (if (null? lst)
+      (if (not (null? initval))
+        (car initval)
+        initval)
+      (if (null? initval)
+        (reduce fn (cdr lst) (car lst))
+        (reduce fn (cdr lst) (fn (car initval) (car lst)))))))
