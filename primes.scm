@@ -18,12 +18,12 @@
        (let ((is-prime (not (factors? primes n))))
        (begin
          ;(if is-prime (pp (list (+ 1 prime-count) n)))
-         (loop (if is-prime
-                   (+ prime-count 1)
-                   prime-count)
-               (if is-prime
+         (if is-prime
+             (loop (+ prime-count 1)
                    (cons n primes)
-                   primes)
-               (+ n 2))))
+                   (+ n 2))
+             (loop prime-count
+                   primes
+                   (+ n 2)))))
          primes))))
   (newline))
