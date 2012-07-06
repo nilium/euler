@@ -10,21 +10,27 @@
     ((= 0 (modulo num (car facs-iter))) #t)
     (else (loop (cdr facs-iter)))))))
 
+(define (prime? num)
+  (and (< 0 (modulo num 2))
+       (let ((term (sqrt num)))
+         (let loop ((iter 3))
+           (cond
+            ((< term iter) #t)
+            ((< 0 (modulo num iter))
+             (loop (+ iter 2)))
+            (else #f))))))
+
 (begin
   (display
-    (let loop ((primes '(2))
-               (n 3)
+    (let loop ((n 3)
                (sum 2))
       (if (< n target)
-        (let ((is-prime (not (factors? primes n))))
+        (let ((is-prime (prime? n)))
         ; (begin
           ; (if is-prime (pp n))
-          (if is-prime
-              (loop (cons n primes)
-                    (+ n 2)
-                    (+ sum n))
-              (loop primes
-                    (+ n 2)
+          (loop (+ n 2)
+                (if is-prime
+                    (+ sum n)
                     sum)))
           sum)))
   (newline))
