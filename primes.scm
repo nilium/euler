@@ -1,15 +1,8 @@
 ;; target is two million
 (define target 2000000)
 
-;; returns true if any of the factors in facs are a factor of num
-(define factors?
- (lambda (facs num)
-  (let loop ((facs-iter facs))
-   (cond
-    ((null? facs-iter) #f)
-    ((= 0 (modulo num (car facs-iter))) #t)
-    (else (loop (cdr facs-iter)))))))
-
+;; brute force prime test
+;; unfortunately faster than the clever solution.
 (define (prime? num)
   (and (< 0 (modulo num 2))
        (let ((term (sqrt num)))
