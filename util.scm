@@ -74,3 +74,20 @@
       (if (null? initval)
         (reduce fn (cdr lst) (car lst))
         (reduce fn (cdr lst) (fn (car initval) (car lst)))))))
+
+;; Flattens a list containing sublists into a single list.
+;; If the input isn't a list, result is undefined.
+;; e.g., (flatten '(1 (2 3 (4)) 5))    ->    (1 2 3 4 5)
+(define (flatten lst)
+  (if (null? lst)
+      lst
+      (if (list? lst)
+        (let ((head (car lst))
+              (tail (cdr lst)))
+          (if (list? head)
+              (if (null? tail)
+                  (flatten head)
+                  (append (flatten head) (flatten tail)))
+              (if (null? tail)
+                (list head)
+                (append (list head) (flatten tail))))))))
