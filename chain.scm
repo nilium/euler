@@ -1,0 +1,25 @@
+(define (chain-length start-num)
+  (let loop ((count 1)
+             (n start-num))
+    (if (= n 1)
+        count
+        (loop (+ count 1)
+              (if (even? n)
+                  (quotient n 2)
+                  (+ (* n 3) 1))))))
+
+(define (find-max-chain start-num)
+  (let loop ((n start-num)
+             (max-pair (cons 0 0)))
+    (let ((len (chain-length n)))
+      (if (> n 2)
+          (if (> len (car max-pair))
+              (loop (- n 2)
+                    (cons len n))
+              (loop (- n 2)
+                    max-pair))
+          max-pair))))
+
+(begin
+  (display (find-max-chain 999999))
+  (newline))
